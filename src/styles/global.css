@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+    100% {
+      border-color: white;
+    }
+}
+
 @theme {
     --color-terracotta-50: #fdf5f3;
     --color-terracotta-100: #fce8e4;
@@ -12,4 +21,7 @@
     --color-terracotta-800: #8f3625;
     --color-terracotta-900: #773225;
     --color-terracotta-950: #40170f;
+
+    --animate-typing: blink 1s infinite;
+    --animate-typing-reverse: typing 2s steps(20) infinite alternate-reverse, blink .7s infinite;
 }

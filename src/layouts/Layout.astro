@@ -1,3 +1,7 @@
+---
+import Navigator from "../components/template/Navigator.astro";
+---
+
 <!doctype html>
 <html lang="es">
 	<head>
@@ -8,6 +12,14 @@
 		<title>Portfolio-Sermarmar</title>
 	</head>
 	<body>
-		<slot />
+		<Navigator/>
+		<main>
+			<slot />
+		</main>
+		<!--
+		<footer>
+			<p>&copy; 2025 Sergio Martín. Todos los derechos reservados.</p>
+		</footer>
+		-->
 	</body>
 </html>

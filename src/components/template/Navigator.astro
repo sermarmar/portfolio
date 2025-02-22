@@ -1,5 +1,5 @@
 ---
-import { Switch } from "./commons/Switch";
+import { Switch } from "../commons/Switch";
 
 let enabled = true;
 ---
@@ -8,7 +8,7 @@ let enabled = true;
   <nav aria-label="Global" class="mx-auto flex items-center justify-between p-6 lg:px-8">
     <div class="flex lg:flex-1">
       <a href="#" class="-m-1.5 p-1.5">
-        <h2 class='text-3xl font-bold text-terracotta-600'>SermarDev</h2>
+        <h2 class='text-3xl font-bold text-terracotta-600'> &gt; SermarDev</h2>
       </a>
     </div>
     <div class="lg:flex lg:gap-x-12">
@@ -29,7 +29,7 @@ let enabled = true;
       </a>
     </div>
     <div class="lg:flex lg:flex-1 lg:justify-end">
-      <Switch checked={enabled} type='dark'/>
+      <Switch client:load checked={enabled} type='dark'/>
     </div>
   </nav>
 </header>
