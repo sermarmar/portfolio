@@ -1,9 +1,17 @@
 ---
 import { Button } from "../commons/Button";
 import { Switch } from "../commons/Switch";
+import { Drawer } from "../Drawer";
+import { MobileMenuButton } from "../MobileMenuButton";
 import Menu from "../Menu.astro";
 
 let enabled = true;
+let isOpen = false;
+
+const openDrawer = () => {
+  console.log('openDrawer');
+  isOpen = true;
+}
 ---
 
 <header class="bg-white shadow-2xl m-5 rounded-3xl fixed inset-x-1 top-1">
@@ -14,11 +22,7 @@ let enabled = true;
       </a>
     </div>
     <div class="lg:hidden text-gray-900">
-      <Button client:load color="transparent">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-      </Button>
+      <MobileMenuButton client:load />
     </div>
     <Menu/>
     <div class="lg:flex lg:flex-1 lg:justify-end">

@@ -15,6 +15,8 @@ export const Button: React.FC<ButtonProps> = ({children, color, txColor, onClick
     }
 
     return (
-        <button className={`px-4 py-2 rounded-sm ${bgColor} ${textColor} transition hover:bg-terracotta-800 hover:text-gray-50`} onClick={onClick}>{ children }</button>
+        <button className={`px-4 py-2 rounded-sm ${bgColor} ${textColor} transition hover:bg-terracotta-800 hover:text-gray-50`} onClick={onClick}>
+            { children }
+        </button>
     )
 }
