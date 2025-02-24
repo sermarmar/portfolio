@@ -27,5 +27,4 @@
     --font-mono: 'Roboto Flex', monospace;
 
     --animate-typing: blink 1s infinite;
-    --animate-typing-reverse: typing 2s steps(20) infinite alternate-reverse, blink .7s infinite;
 }

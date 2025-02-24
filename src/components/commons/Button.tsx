@@ -4,18 +4,21 @@ interface ButtonProps {
     children: React.ReactNode;
     color?: string;
     txColor?: string;
+    shape?: 'rounded-full' | 'rounded-sm' | 'square';
+    isFast?: boolean;
     onClick?: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({children, color, txColor, onClick}) => {
+export const Button: React.FC<ButtonProps> = ({children, color, txColor, shape = 'rounded-sm', isFast, onClick}) => {
     const bgColor = color ? `bg-${color}` : "bg-terracotta-600";
     let textColor = txColor ? `text-${txColor}` : "text-white";
+    let shapeForm = isFast ? 'px-5 py-5' : 'px-4 py-2';
     if(color && color === 'transparent') {
         textColor = 'text-gray-900';
     }
 
     return (
-        <button className={`px-4 py-2 rounded-sm ${bgColor} ${textColor} transition hover:bg-terracotta-800 hover:text-gray-50`} onClick={onClick}>
+        <button className={`${shapeForm} ${shape} ${bgColor} ${textColor} shadow-lg transition hover:bg-terracotta-800 hover:text-gray-50`} onClick={onClick}>
             { children }
         </button>
     )
