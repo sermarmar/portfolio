@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Button } from "./commons/Button"
+import { useWindowScroll } from "@uidotdev/usehooks";
 
 interface DownButtonProps {
     sectionsNum: number;
@@ -7,6 +8,30 @@ interface DownButtonProps {
 export const DownButton: React.FC<DownButtonProps> = ({ sectionsNum }) => {
     const [section, setSection] = useState(1);
     const [isUp, setIsUp] = useState(false);
+    
+    const [{ x, y }, scrollTo] = useWindowScroll();
+
+    useEffect(() => {
+        handleScroll();
+    }, [y])
+
+    const retrieveMaxScroll = () => {
+        const documentHeight = document.documentElement.scrollHeight;
+        const windowHeight = window.innerHeight;
+        return documentHeight - windowHeight;
+    }
+    
+    const handleScroll = () => {
+        if(y !== null) {
+            const currentSection = Math.ceil(y / window.innerHeight) + 1;
+            setSection(currentSection);
+            if (y >= retrieveMaxScroll()) {
+                setIsUp(true);
+            } else {
+                setIsUp(false);
+            }
+        }
+    }
 
     const handleClick = () => {
         const nextSection = section + 1;
