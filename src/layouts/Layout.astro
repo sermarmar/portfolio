@@ -1,6 +1,6 @@
 ---
 import { DownButton } from "../components/DownButton";
-import Navigator from "../components/template/Navigator.astro";
+import { Navigator } from "../template/Navigator";
 ---
 
 <!doctype html>
@@ -13,7 +13,7 @@ import Navigator from "../components/template/Navigator.astro";
 		<title>Portfolio-Sermarmar</title>
 	</head>
 	<body class="font-mono">
-		<Navigator/>
+		<Navigator client:load/>
 		<main>
 			<slot />
 		</main>

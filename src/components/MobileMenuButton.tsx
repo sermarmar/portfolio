@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Button } from "./commons/Button";
 import { Drawer } from "./Drawer";
+import { useDrawer } from "../providers/drawer/useDrawer";
 
 export const MobileMenuButton: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const {isOpen, setIsOpen} = useDrawer();
 
     return (
         <>
@@ -12,8 +13,6 @@ export const MobileMenuButton: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </Button>
-            
-            <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </>
     );
 }
