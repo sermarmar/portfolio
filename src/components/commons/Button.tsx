@@ -14,7 +14,7 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({children, color, txColor, shape, shadow, isFast, onClick, className}) => {
     const bgColor = color ? `bg-${color}` : "bg-terracotta-600";
     let textColor = txColor ? `text-${txColor}` : "text-white";
-    let shapeForm = isFast ? 'px-5 py-5' : 'px-4 py-2';
+    const shapeForm = isFast ? 'px-5 py-5' : 'px-4 py-2';
     const hasShadow = shadow ? 'shadow-lg' : '';
     if(color && color === 'transparent') {
         textColor = 'text-gray-900';
