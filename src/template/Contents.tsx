@@ -7,7 +7,7 @@ import { sections } from "../data/profile";
 export const Contents: React.FC = () => {
     return (
         <Section id="index" tone="ink">
-            <div aria-hidden className="absolute right-[5%] bottom-[10%] size-96 rounded-full bg-terracotta-500/25 blur-[110px]" />
+            <div aria-hidden className="absolute right-[calc(5%-14rem)] bottom-[calc(10%-14rem)] size-[52rem] bg-radial-[closest-side] from-terracotta-500/20 via-terracotta-500/10 via-45% to-transparent" />
 
             <h2 className="relative z-10 flex flex-wrap items-center gap-x-5 text-[clamp(3rem,8.5vw,8rem)] font-semibold leading-none tracking-tighter">
                 Tabla <span className="text-[0.4em] font-medium tracking-normal">de</span>

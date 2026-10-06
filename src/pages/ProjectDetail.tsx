@@ -14,6 +14,7 @@ export const ProjectDetail: React.FC = () => {
     const project = projects[index];
     const previous = projects[(index - 1 + projects.length) % projects.length];
     const next = projects[(index + 1) % projects.length];
+    const gallery = project.images.slice(1);
 
     return (
         <main>
@@ -74,8 +75,8 @@ export const ProjectDetail: React.FC = () => {
                         Gale<span className="font-serif font-normal italic tracking-normal">ría</span>
                     </h2>
                     <div className="grid gap-8 md:grid-cols-2">
-                        {project.images.length > 0
-                            ? project.images.map((image) => (
+                        {gallery.length > 0
+                            ? gallery.map((image) => (
                                 <img key={image.src} src={image.src} alt={image.alt} loading="lazy" className="w-full rounded-2xl border-[3px] border-ink shadow-brutal" />
                             ))
                             : [1, 2].map((n) => (

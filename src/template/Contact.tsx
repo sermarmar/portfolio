@@ -12,7 +12,7 @@ const channels = [
 export const Contact: React.FC = () => {
     return (
         <section id="contact" className="relative flex min-h-svh flex-col overflow-hidden bg-ink px-5 pt-28 pb-6 text-paper md:px-10 md:pt-32 lg:px-16">
-            <div aria-hidden className="absolute -right-20 bottom-1/4 size-[30rem] rounded-full bg-terracotta-500/30 blur-[120px]" />
+            <div aria-hidden className="absolute -right-[20rem] bottom-[calc(25%-15rem)] size-[60rem] bg-radial-[closest-side] from-terracotta-500/26 via-terracotta-500/14 via-45% to-transparent" />
 
             <ContactBar />
 

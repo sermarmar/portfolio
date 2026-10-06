@@ -7,8 +7,8 @@ import { profile } from "../data/profile";
 export const Hero: React.FC = () => {
     return (
         <section id="home" className="relative flex min-h-svh flex-col overflow-hidden bg-ink px-5 pt-24 pb-6 text-paper md:px-10 md:pt-28 lg:px-16">
-            <div aria-hidden className="absolute -top-32 right-[10%] size-[28rem] rounded-full bg-terracotta-500/30 blur-[120px]" />
-            <div aria-hidden className="absolute bottom-0 -left-20 size-80 rounded-full bg-terracotta-700/30 blur-[100px]" />
+            <div aria-hidden className="absolute -top-[23rem] right-[calc(10%-15rem)] size-[58rem] bg-radial-[closest-side] from-terracotta-500/25 via-terracotta-500/13 via-45% to-transparent" />
+            <div aria-hidden className="absolute -bottom-[12rem] -left-[17rem] size-[44rem] bg-radial-[closest-side] from-terracotta-700/22 via-terracotta-700/11 via-45% to-transparent" />
 
             <ContactBar />
 
@@ -32,7 +32,7 @@ export const Hero: React.FC = () => {
                 <div className="mb-[1.5vw] flex flex-col items-end gap-2">
                     <span className="text-sm md:text-lg">Versión v.1.0</span>
                     <span className="text-3xl md:text-5xl">
-                        <Circled text={profile.year} className="border-terracotta-500 text-terracotta-500" />
+                        <Circled text={profile.year} bold className="border-terracotta-500 text-terracotta-500" />
                     </span>
                 </div>
             </div>
