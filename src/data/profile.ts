@@ -146,7 +146,7 @@ export const projects: Project[] = [
         slug: "portfolio",
         title: "Portfolio",
         accent: "2026",
-        url: "sermar.dev",
+        url: "portfolio-wine-six-27.vercel.app",
         stack: "React · Tailwind",
         year: "2026",
         role: "Diseño + Dev",
@@ -167,7 +167,7 @@ export const projects: Project[] = [
             { src: "/proyectos/portfolio/detalle.webp", alt: "Página de detalle de un proyecto" },
         ],
         code: "https://github.com/sermarmar/portfolio",
-        demo: null,
+        demo: "https://portfolio-wine-six-27.vercel.app",
     },
     {
         slug: "osmels-cake",
