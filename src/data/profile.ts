@@ -204,7 +204,7 @@ export const projects: Project[] = [
         stack: "React · Supabase",
         year: "2026",
         role: "Fullstack",
-        overview: "App personal de productividad y bienestar: tareas, hábitos, temporizador Pomodoro y panel de salud mental en un mismo dashboard.",
+        overview: "App personal de productividad y bienestar: tareas, hábitos, temporizador Pomodoro, mapa de actividades y panel de salud mental en un mismo dashboard.",
         challenge: "Juntar cuatro herramientas distintas en una sola app sin que el código acabe siendo un monolito difícil de mantener.",
         solution: "Arquitectura por features verticales con capas repositorio → servicio → componente, Supabase para la autenticación y los datos, y Zustand y contextos para el estado de cada módulo.",
         features: [
@@ -212,8 +212,14 @@ export const projects: Project[] = [
             "Hábitos con frecuencia diaria, semanal o por días, y registro de cumplimiento.",
             "Temporizador Pomodoro integrado en el dashboard.",
             "Panel de salud mental con gráficas de seguimiento.",
+            "Mapa de actividades del año, al estilo de las contribuciones de GitHub.",
+            "Modo demo con datos ficticios para las vistas previas de Vercel, que nunca llega a producción.",
         ],
         images: [
+            { src: "/proyectos/abyssal/dashboard.webp", alt: "Dashboard de Abyssal con Pomodoro, hábitos de hoy, salud mental, mapa de actividades y calendario" },
+            { src: "/proyectos/abyssal/tareas.webp", alt: "Tablero de tareas por estados con arrastrar y soltar" },
+            { src: "/proyectos/abyssal/habitos.webp", alt: "Hábitos del día con la semana para marcar los completados" },
+            { src: "/proyectos/abyssal/configuracion.webp", alt: "Configuración de grupos y categorías" },
             { src: "/proyectos/abyssal/login.webp", alt: "Pantalla de inicio de sesión de Abyssal" },
         ],
         code: "https://github.com/sermarmar/task-build-app",
