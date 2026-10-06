@@ -33,13 +33,6 @@ export const about = [
     "Traducción: transformo café ☕ en interfaces que hipnotizan, lógica que escala montañas de datos 🏔️ y clientes que pasan del \"¡esto es imposible!\" al \"¡ERES BRUJO!\". 🧙🔥",
 ];
 
-const startedCoding = 2017;
-
-export const stats = [
-    { value: `${new Date().getFullYear() - startedCoding}+`, label: "años escribiendo código" },
-    { value: "20+", label: "proyectos entregados" },
-    { value: "∞", label: "cafés convertidos en código" },
-];
 
 export const experiences: Time[] = [
     {
@@ -253,4 +246,18 @@ export const projects: Project[] = [
         code: "https://github.com/sermarmar/invitacion-digital",
         demo: "#",
     },
+];
+
+const startedCoding = 2017;
+const coffeesPerDay = 1;
+const workdaysPerYear = 220;
+
+const yearsCoding = (Date.now() - new Date(startedCoding, 0, 1).getTime()) / (365.25 * 24 * 60 * 60 * 1000);
+const coffees = Math.floor((yearsCoding * workdaysPerYear * coffeesPerDay) / 100) * 100;
+const clientCount = experiences.reduce((total, { clients }) => total + (clients?.length ?? 0), 0);
+
+export const stats = [
+    { value: `${new Date().getFullYear() - startedCoding}+`, label: "años escribiendo código" },
+    { value: `${projects.length + clientCount}`, label: "proyectos y clientes" },
+    { value: `${coffees.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}+`, label: "cafés convertidos en código" },
 ];
