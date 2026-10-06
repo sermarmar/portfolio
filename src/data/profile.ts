@@ -108,6 +108,11 @@ export interface Project {
     features: string[];
     // La primera imagen hace de portada en la vista previa; el resto va a la galería.
     images: { src: string; alt: string }[];
+    // Comparador antes/después: cada pantalla con su captura vieja y la nueva, del mismo tamaño.
+    redesign?: {
+        text: string[];
+        screens: { label: string; before: string; after: string }[];
+    };
     // null si el repositorio es privado: el botón «Ver código» sale desactivado.
     code: string | null;
     // null si no hay demo publicada: el botón «Ver demo» sale desactivado.
@@ -216,14 +221,28 @@ export const projects: Project[] = [
             "Modo demo con datos ficticios para las vistas previas de Vercel, que nunca llega a producción.",
         ],
         images: [
-            { src: "/proyectos/abyssal/dashboard.webp", alt: "Dashboard de Abyssal con Pomodoro, hábitos de hoy, salud mental, mapa de actividades y calendario" },
-            { src: "/proyectos/abyssal/tareas.webp", alt: "Tablero de tareas por estados con arrastrar y soltar" },
+            { src: "/proyectos/abyssal/dashboard.webp", alt: "Dashboard rediseñado de Abyssal con resumen, mapa de actividades, salud mental, áreas de bienestar y Pomodoro" },
+            { src: "/proyectos/abyssal/tareas.webp", alt: "Tablero de tareas por estados con tarjetas de estilo clay" },
             { src: "/proyectos/abyssal/habitos.webp", alt: "Hábitos del día con la semana para marcar los completados" },
-            { src: "/proyectos/abyssal/configuracion.webp", alt: "Configuración de grupos y categorías" },
-            { src: "/proyectos/abyssal/login.webp", alt: "Pantalla de inicio de sesión de Abyssal" },
+            { src: "/proyectos/abyssal/configuracion.webp", alt: "Configuración de grupos con su color en esferas 3D" },
+            { src: "/proyectos/abyssal/login.webp", alt: "Pantalla de inicio de sesión rediseñada de Abyssal" },
         ],
+        redesign: {
+            text: [
+                "La primera versión usaba un verde corporativo con tarjetas planas. La rediseñé entera con un estilo clay 3D y una paleta pastel de ciruela, azul polvo, melocotón y rosa.",
+                "Las ideas de UX/UI son mías: se las mandé a Claude con imágenes de referencia del estilo que buscaba, y con su ayuda las convertí en el nuevo sistema de diseño. Tokens del tema, sombras clay, sidebar blanca, una cabecera común y barra inferior en móvil, y el dashboard, las tareas, los hábitos, la configuración y el login rehechos.",
+            ],
+            screens: [
+                { label: "Dashboard", before: "/proyectos/abyssal/antes/dashboard.webp", after: "/proyectos/abyssal/dashboard.webp" },
+                { label: "Tareas", before: "/proyectos/abyssal/antes/tareas.webp", after: "/proyectos/abyssal/tareas.webp" },
+                { label: "Hábitos", before: "/proyectos/abyssal/antes/habitos.webp", after: "/proyectos/abyssal/habitos.webp" },
+                { label: "Configuración", before: "/proyectos/abyssal/antes/configuracion.webp", after: "/proyectos/abyssal/configuracion.webp" },
+                { label: "Login", before: "/proyectos/abyssal/antes/login.webp", after: "/proyectos/abyssal/login.webp" },
+            ],
+        },
         code: "https://github.com/sermarmar/task-build-app",
-        demo: "https://task-build-app-flax.vercel.app",
+        // Vista previa de la rama del rediseño, con datos ficticios: no hace falta cuenta para probarla.
+        demo: "https://task-build-app-git-feature-redesign-ui-sermarmars-projects.vercel.app",
     },
     {
         slug: "invitacion-digital",

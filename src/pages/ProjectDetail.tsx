@@ -2,6 +2,7 @@ import { EyeOff, Lock } from "lucide-react";
 import type React from "react";
 import { Link, Navigate, useParams } from "react-router";
 import { ProjectPreview } from "../components/ProjectPreview";
+import { ProjectRedesign } from "../components/ProjectRedesign";
 import { Section } from "../components/commons/Section";
 import { SectionTitle } from "../components/commons/SectionTitle";
 import { profile, projects } from "../data/profile";
@@ -70,6 +71,8 @@ export const ProjectDetail: React.FC = () => {
                         </div>
                     ))}
                 </div>
+
+                {project.redesign && <ProjectRedesign redesign={project.redesign} />}
 
                 <div className="mt-24 grid gap-10 lg:grid-cols-[1fr_2fr]">
                     <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-none tracking-tighter">
