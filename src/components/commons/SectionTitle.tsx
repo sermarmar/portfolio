@@ -27,7 +27,7 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({ kicker, title, accen
                 </Heading>
                 <span aria-hidden className="hidden md:block flex-1 min-w-16 h-[3px] bg-current" />
                 <span className="text-4xl md:text-6xl">
-                    <Circled text={number} className={digits[tone]} />
+                    <Circled text={number} bold className={digits[tone]} />
                 </span>
             </div>
         </header>
