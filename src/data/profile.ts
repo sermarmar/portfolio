@@ -101,8 +101,26 @@ export const stack = [
     },
 ];
 
-export const projects = [
+export interface Project {
+    slug: string;
+    title: string;
+    accent: string;
+    url: string;
+    stack: string;
+    year: string;
+    role: string;
+    overview: string;
+    challenge: string;
+    solution: string;
+    features: string[];
+    images: { src: string; alt: string }[];
+    code: string;
+    demo: string;
+}
+
+export const projects: Project[] = [
     {
+        slug: "portfolio",
         title: "Portfolio",
         accent: "2026",
         url: "sermar.dev",
@@ -112,10 +130,18 @@ export const projects = [
         overview: "Mi portfolio personal planteado como una carpeta de proyectos, con estética neo-brutalista y glassmorphism sobre mi color terracota.",
         challenge: "Trasladar el lenguaje de un portfolio editorial de diseño a una web rápida, accesible y que funcione igual de bien en móvil.",
         solution: "Componentes React tipados, Tailwind v4 con tokens propios y despliegue continuo en Vercel.",
+        features: [
+            "Diseño neo-brutalista con glassmorphism y tokens propios en Tailwind v4.",
+            "Navegación por secciones como si fuera un explorador de archivos.",
+            "Página de detalle para cada proyecto con URL propia.",
+            "Adaptado a móvil, con menú lateral y respeto a reduced motion.",
+        ],
+        images: [],
         code: "#",
         demo: "#",
     },
     {
+        slug: "gestor-tareas",
         title: "Gestor",
         accent: "de tareas",
         url: "tasks.sermar.dev",
@@ -125,10 +151,18 @@ export const projects = [
         overview: "Aplicación de gestión de tareas por equipos con tableros, estados y notificaciones en tiempo real.",
         challenge: "Mantener la consistencia de los datos con muchos usuarios editando el mismo tablero a la vez.",
         solution: "API REST con Spring Boot y bloqueo optimista, frontend en React con actualizaciones optimistas y WebSockets.",
+        features: [
+            "Tableros por equipo con columnas y estados configurables.",
+            "Edición simultánea con bloqueo optimista para evitar conflictos.",
+            "Notificaciones en tiempo real mediante WebSockets.",
+            "Roles y permisos por tablero.",
+        ],
+        images: [],
         code: "#",
         demo: "#",
     },
     {
+        slug: "panel-supabase",
         title: "Panel",
         accent: "Supabase",
         url: "panel.sermar.dev",
@@ -138,6 +172,13 @@ export const projects = [
         overview: "Dashboard de métricas para un pequeño negocio: ventas, clientes y stock en una sola vista.",
         challenge: "Pasar de hojas de cálculo sueltas a una fuente de datos única sin montar un backend propio.",
         solution: "Supabase con Row Level Security para la autenticación y los datos, y gráficos en React con filtros por fecha.",
+        features: [
+            "Vista única de ventas, clientes y stock.",
+            "Autenticación y datos protegidos con Row Level Security.",
+            "Gráficos con filtros por rango de fechas.",
+            "Sin backend propio: todo sobre Supabase.",
+        ],
+        images: [],
         code: "#",
         demo: "#",
     },

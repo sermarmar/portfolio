@@ -1,4 +1,5 @@
 import type React from "react";
+import { Link } from "react-router";
 import { useDrawer } from "../providers/drawer/useDrawer";
 import { listMenu } from "../data/profile";
 
@@ -32,10 +33,10 @@ export const Drawer: React.FC = () => {
                 <ul className="flex flex-1 flex-col justify-center gap-6 px-8">
                     {listMenu.map((item, index) => (
                         <li key={item.id}>
-                            <a href={`#${item.id}`} onClick={close} className="group flex items-baseline gap-3">
+                            <Link to={`/#${item.id}`} onClick={close} className="group flex items-baseline gap-3">
                                 <span className="font-mono text-sm text-terracotta-700">{String(index).padStart(2, "0")}</span>
                                 <span className="font-serif text-4xl italic transition-colors group-hover:text-terracotta-600">{item.label}</span>
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>

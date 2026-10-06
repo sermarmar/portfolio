@@ -14,16 +14,17 @@ interface SectionTitleProps {
     accent: string;
     number: string;
     tone: Tone;
+    as?: "h1" | "h2";
 }
 
-export const SectionTitle: React.FC<SectionTitleProps> = ({ kicker, title, accent, number, tone }) => {
+export const SectionTitle: React.FC<SectionTitleProps> = ({ kicker, title, accent, number, tone, as: Heading = "h2" }) => {
     return (
         <header className="relative z-10 mb-12 md:mb-20">
             <p className="font-mono text-sm md:text-base opacity-70 mb-3">{kicker}</p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-                <h2 className="text-[clamp(3rem,7vw,7rem)] leading-[0.9] font-semibold tracking-tighter">
+                <Heading className="text-[clamp(3rem,7vw,7rem)] leading-[0.9] font-semibold tracking-tighter">
                     {title} <span className="font-serif italic font-normal tracking-normal">{accent}</span>
-                </h2>
+                </Heading>
                 <span aria-hidden className="hidden md:block flex-1 min-w-16 h-[3px] bg-current" />
                 <span className="text-4xl md:text-6xl">
                     <Circled text={number} className={digits[tone]} />
