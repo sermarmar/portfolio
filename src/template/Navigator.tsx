@@ -1,34 +1,30 @@
-import { Switch } from "../components/commons/Switch";
-import { Drawer } from "../components/Drawer";
-import { MobileMenuButton } from "../components/MobileMenuButton";
-import { Menu } from "../components/Menu";
-import { DrawerProvider } from "../providers/drawer/DrawerProvider";
 import type React from "react";
-
-const enabled = true;
+import { Drawer } from "../components/Drawer";
+import { Menu } from "../components/Menu";
+import { MobileMenuButton } from "../components/MobileMenuButton";
+import { DrawerProvider } from "../providers/drawer/DrawerProvider";
 
 export const Navigator: React.FC = () => {
-  return(
-    <DrawerProvider>
-      <header className="bg-white/50 backdrop-blur-lg shadow-2xl m-5 rounded-3xl fixed inset-x-1 top-1">
-        <nav aria-label="Global" className="mx-auto flex items-center justify-between p-6 lg:px-8">
-          <div className="max-lg:hidden lg:flex lg:flex-1 ">
-            <a href="#" className="-m-1.5 p-1.5">
-              <h2 className='text-3xl font-bold text-terracotta-600'> &gt; SermarDev</h2>
-            </a>
-          </div>
-          <div className="lg:hidden text-gray-900">
-            <MobileMenuButton />
-          </div>
-          <Menu/>
-          <div className="lg:flex lg:flex-1 lg:justify-end">
-            <Switch checked={enabled} type='dark'/>
-          </div>
-        </nav>
-      </header>
-      <Drawer />
-    </DrawerProvider>
-  );
-}
-
-
+    return (
+        <DrawerProvider>
+            <header className="fixed inset-x-3 top-3 z-40 md:inset-x-6 md:top-4">
+                <nav aria-label="Global" className="glass relative mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-full bg-paper/60 px-4 py-2.5 md:px-6">
+                    <a href="#home" className="font-mono text-xl font-bold text-ink md:text-2xl">
+                        <span className="text-terracotta-600">&gt;</span> SermarDev
+                        <span className="ml-0.5 animate-typing border-r-[3px] border-terracotta-500" />
+                    </a>
+                    <Menu />
+                    <div className="flex items-center gap-3">
+                        <a href="#contact" className="press max-sm:hidden lg:max-xl:hidden rounded-full border-[3px] border-ink bg-terracotta-500 px-5 py-2 font-semibold text-ink shadow-brutal-sm">
+                            Hablemos ↗
+                        </a>
+                        <div className="lg:hidden">
+                            <MobileMenuButton />
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <Drawer />
+        </DrawerProvider>
+    );
+};

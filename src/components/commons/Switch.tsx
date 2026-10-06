@@ -7,11 +7,16 @@ interface SwitchProps {
 }
 
 export const Switch: React.FC<SwitchProps> = ({checked, type, onChange}) => {
-    const [enabled, setEnabled] = useState(true);
+    const [enabled, setEnabled] = useState(checked);
+
+    const toggle = () => {
+        setEnabled(!enabled);
+        onChange?.(!enabled);
+    };
     
     if (type === 'dark') {
         return (
-            <div className="w-[60px] h-[30px] p-1 rounded-full bg-gray-200 flex items-center justify-between" onClick={() => setEnabled(!enabled)}>
+            <div className="w-[60px] h-[30px] p-1 rounded-full bg-gray-200 flex items-center justify-between" onClick={toggle}>
                 <span className="flex">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4">
                         <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
@@ -27,7 +32,7 @@ export const Switch: React.FC<SwitchProps> = ({checked, type, onChange}) => {
         )
     }
     return (
-        <div className="w-[50px] h-[25px] p-1 rounded-xl bg-gray-200" onClick={() => setEnabled(!enabled)}>
+        <div className="w-[50px] h-[25px] p-1 rounded-xl bg-gray-200" onClick={toggle}>
             <div className={`bg-terracotta-600 w-4 h-4 rounded-full shadow transition-transform duration-200 ${enabled ? 'translate-x-6' : 'translate-x-0'}`}></div>
         </div>
     )

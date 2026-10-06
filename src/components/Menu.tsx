@@ -1,21 +1,18 @@
-import React from 'react';
-
-const listMenu = [
-  { name: 'Inicio', link: '#home' },
-  { name: 'Sobre mí', link: '#about' },
-  { name: 'Tecnologías', link: '#tecnology' },
-  { name: 'Proyectos', link: '#projects' },
-  { name: 'Contacto', link: '#contact' }
-] 
+import type React from "react";
+import { listMenu } from "../data/profile";
 
 export const Menu: React.FC = () => {
-  return (
-    <div className="lg:flex lg:gap-x-12 max-lg:hidden text-[16px] text-gray-900 font-semibold">
-      { listMenu.map((item, index) => (
-        <a key={ index } href={ item.link } className="hover:text-terracotta-600">
-          {item.name}
-        </a>
-      )) }
-    </div>
-  );
+    return (
+        <div className="max-lg:hidden flex gap-x-1 xl:gap-x-2 text-[15px] font-medium text-ink">
+            {listMenu.map((item) => (
+                <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className="rounded-full border-2 border-transparent px-3 py-1.5 transition-colors hover:border-ink hover:bg-terracotta-500"
+                >
+                    {item.label}
+                </a>
+            ))}
+        </div>
+    );
 };
