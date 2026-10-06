@@ -1,3 +1,4 @@
+import { EyeOff, Lock } from "lucide-react";
 import type React from "react";
 import { Link, Navigate, useParams } from "react-router";
 import { ProjectPreview } from "../components/ProjectPreview";
@@ -36,12 +37,26 @@ export const ProjectDetail: React.FC = () => {
                         ))}
                     </dl>
                     <div className="flex flex-wrap gap-4">
-                        <a href={project.code} className="press rounded-full border-[3px] border-ink bg-ink px-6 py-2.5 font-semibold text-paper shadow-brutal-accent">
-                            Ver código ↗
-                        </a>
-                        <a href={project.demo} className="press rounded-full border-[3px] border-ink bg-terracotta-500 px-6 py-2.5 font-semibold shadow-brutal">
-                            Ver demo ↗
-                        </a>
+                        {project.code ? (
+                            <a href={project.code} className="press rounded-full border-[3px] border-ink bg-ink px-6 py-2.5 font-semibold text-paper shadow-brutal-accent">
+                                Ver código ↗
+                            </a>
+                        ) : (
+                            <span aria-disabled="true" title="Repositorio privado" className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border-[3px] border-ink/25 px-6 py-2.5 font-semibold text-ink/40">
+                                Ver código <Lock aria-hidden className="size-4" />
+                                <span className="sr-only">(repositorio privado)</span>
+                            </span>
+                        )}
+                        {project.demo ? (
+                            <a href={project.demo} className="press rounded-full border-[3px] border-ink bg-terracotta-500 px-6 py-2.5 font-semibold shadow-brutal">
+                                Ver demo ↗
+                            </a>
+                        ) : (
+                            <span aria-disabled="true" title="Sin demo publicada" className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border-[3px] border-ink/25 px-6 py-2.5 font-semibold text-ink/40">
+                                Ver demo <EyeOff aria-hidden className="size-4" />
+                                <span className="sr-only">(sin demo publicada)</span>
+                            </span>
+                        )}
                     </div>
                 </div>
 

@@ -108,8 +108,10 @@ export interface Project {
     features: string[];
     // La primera imagen hace de portada en la vista previa; el resto va a la galería.
     images: { src: string; alt: string }[];
-    code: string;
-    demo: string;
+    // null si el repositorio es privado: el botón «Ver código» sale desactivado.
+    code: string | null;
+    // null si no hay demo publicada: el botón «Ver demo» sale desactivado.
+    demo: string | null;
 }
 
 export const projects: Project[] = [
@@ -137,7 +139,7 @@ export const projects: Project[] = [
             { src: "/proyectos/quedamos/entrada.webp", alt: "Pantallas de entrada de Quedamos: como invitado, con correo o con Google" },
             { src: "/proyectos/quedamos/admin.webp", alt: "Acceso al panel de administración de Quedamos" },
         ],
-        code: "https://github.com/sermarmar/quedamos-app",
+        code: null,
         demo: "https://quedamos-app.vercel.app",
     },
     {
@@ -164,8 +166,8 @@ export const projects: Project[] = [
             { src: "/proyectos/portfolio/proyectos.webp", alt: "Rejilla de proyectos destacados" },
             { src: "/proyectos/portfolio/detalle.webp", alt: "Página de detalle de un proyecto" },
         ],
-        code: "#",
-        demo: "#",
+        code: "https://github.com/sermarmar/portfolio",
+        demo: null,
     },
     {
         slug: "osmels-cake",
@@ -191,8 +193,8 @@ export const projects: Project[] = [
             { src: "/proyectos/osmels-cake/tartas.webp", alt: "Página del servicio de tartas personalizadas" },
             { src: "/proyectos/osmels-cake/blog.webp", alt: "Blog de recetas y tutoriales" },
         ],
-        code: "https://github.com/sermarmar/osmels-cake",
-        demo: "#",
+        code: null,
+        demo: null,
     },
     {
         slug: "abyssal",
@@ -243,8 +245,8 @@ export const projects: Project[] = [
             { src: "/proyectos/invitacion-digital/portal.webp", alt: "Landing de Invitación digital: «Tu boda, en un enlace»" },
             { src: "/proyectos/invitacion-digital/disenos.webp", alt: "Funcionalidades y catálogo de diseños en la landing" },
         ],
-        code: "https://github.com/sermarmar/invitacion-digital",
-        demo: "#",
+        code: null,
+        demo: null,
     },
 ];
 
