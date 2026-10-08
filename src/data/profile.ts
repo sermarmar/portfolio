@@ -241,8 +241,8 @@ export const projects: Project[] = [
             ],
         },
         code: "https://github.com/sermarmar/task-build-app",
-        // Vista previa de la rama del rediseño, con datos ficticios: no hace falta cuenta para probarla.
-        demo: "https://task-build-app-git-feature-redesign-ui-sermarmars-projects.vercel.app",
+        // Vista previa de develop, con datos ficticios: no hace falta cuenta para probarla.
+        demo: "https://task-build-app-git-develop-sermarmars-projects.vercel.app",
     },
     {
         slug: "invitacion-digital",
