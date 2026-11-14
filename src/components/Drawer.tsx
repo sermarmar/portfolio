@@ -11,6 +11,7 @@ interface DrawerProps {
 
 export const Drawer: React.FC<DrawerProps> = ({ active }) => {
     const { isOpen, setIsOpen } = useDrawer();
+    const asideRef = useRef<HTMLElement>(null);
     const listRef = useRef<HTMLUListElement>(null);
     const closeRef = useRef<HTMLButtonElement>(null);
     const close = () => setIsOpen(false);
@@ -21,7 +22,21 @@ export const Drawer: React.FC<DrawerProps> = ({ active }) => {
         closeRef.current?.focus();
 
         const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") setIsOpen(false);
+            if (event.key === "Escape") return setIsOpen(false);
+            if (event.key !== "Tab" || !asideRef.current) return;
+
+            const focusables = asideRef.current.querySelectorAll<HTMLElement>("a[href], button");
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            const current = document.activeElement;
+
+            if (!asideRef.current.contains(current) || (event.shiftKey && current === first)) {
+                event.preventDefault();
+                (event.shiftKey ? last : first).focus();
+            } else if (!event.shiftKey && current === last) {
+                event.preventDefault();
+                first.focus();
+            }
         };
         document.addEventListener("keydown", onKeyDown);
 
@@ -46,6 +61,10 @@ export const Drawer: React.FC<DrawerProps> = ({ active }) => {
                 className={`fixed inset-0 z-50 bg-ink/40 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
             />
             <aside
+                ref={asideRef}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Menú"
                 inert={!isOpen}
                 className={`fixed top-0 left-0 z-50 flex h-full w-80 max-w-[85vw] flex-col border-r-[3px] border-ink bg-paper transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0 shadow-brutal" : "-translate-x-full"}`}
             >

@@ -118,10 +118,6 @@
 }
 
 @layer base {
-    html {
-        scroll-behavior: smooth;
-    }
-
     body {
         @apply bg-ink text-ink font-sans antialiased;
     }
@@ -137,10 +133,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
     *,
     *::before,
     *::after {
