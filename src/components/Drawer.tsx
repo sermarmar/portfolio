@@ -58,7 +58,7 @@ export const Drawer: React.FC<DrawerProps> = ({ active }) => {
         <div className="lg:hidden">
             <div
                 onClick={close}
-                className={`fixed inset-0 z-50 bg-ink/40 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
+                className={`fixed inset-0 z-50 bg-ink/40 backdrop-blur-sm transition-[opacity,visibility] duration-300 ${isOpen ? "visible opacity-100" : "pointer-events-none invisible opacity-0"}`}
             />
             <aside
                 ref={asideRef}

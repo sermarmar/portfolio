@@ -38,6 +38,23 @@ export const Experiencies: React.FC = () => {
                     scrollTrigger: { trigger: dot, start: "center 60%", toggleActions: "play none none reverse" },
                 });
             });
+
+            const cards = gsap.utils.toArray<HTMLElement>("[data-experience] article", ref.current);
+            gsap.set(cards, { autoAlpha: 0 });
+            ScrollTrigger.batch(cards, {
+                start: "top 85%",
+                once: true,
+                onEnter: (batch) => batch.forEach((card, index) => {
+                    const shadow = getComputedStyle(card).getPropertyValue("--tw-shadow");
+                    gsap.set(card, { xPercent: 12, rotation: 2, x: 6, y: 6, "--tw-shadow": shadow.replace(/^\S+ \S+/, "0px 0px") });
+
+                    gsap.timeline({ delay: index * 0.12 })
+                        .to(card, { autoAlpha: 1, duration: 0.3 })
+                        .to(card, { xPercent: 0, rotation: 0, duration: 0.8, ease: "expo.out" }, 0)
+                        .to(card, { x: 0, y: 0, "--tw-shadow": shadow, duration: 0.45, ease: "back.out(3)", clearProps: "transform,--tw-shadow" }, 0.55)
+                        .from(card.querySelectorAll("li"), { scale: 0.5, autoAlpha: 0, duration: 0.4, stagger: 0.03, ease: "back.out(2.5)" }, 0.5);
+                }),
+            });
         });
 
         // El git log solo se queda fijo al lado de la timeline a partir de lg.
@@ -61,7 +78,7 @@ export const Experiencies: React.FC = () => {
             <div ref={ref} className="grid items-start gap-12 lg:grid-cols-[1fr_1.6fr]">
                 <div className="relative lg:sticky lg:top-32">
                     <div aria-hidden className="absolute -top-6 -left-6 size-32 rounded-full border-[3px] border-ink bg-terracotta-500" />
-                    <div aria-hidden className="absolute -right-4 -bottom-4 size-24 rounded-full bg-terracotta-300 blur-xl" />
+                    <div aria-hidden className="absolute -right-20 -bottom-20 size-56 bg-radial-[closest-side] from-terracotta-300/85 via-terracotta-300/45 via-45% to-transparent" />
                     <Terminal title="git log --oneline" className="relative">
                         <ul className="space-y-1 text-sm">
                             {commits.map((commit, index) => {

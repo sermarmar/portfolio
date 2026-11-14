@@ -1,4 +1,5 @@
 import type React from "react";
+import { useEffect, useRef, useState } from "react";
 import retroPc from "../assets/retro-pc.webp";
 
 const ink = "var(--color-ink)";
@@ -38,9 +39,25 @@ const Sparkle: React.FC<{ x: number; y: number; size: number; fill: string }> = 
 );
 
 export const RetroComputer: React.FC = () => {
+    const svgRef = useRef<SVGSVGElement>(null);
+    const [paused, setPaused] = useState(false);
+
+    // El suelo y las franjas del sol repintan el SVG en cada frame, así que fuera de pantalla se paran.
+    useEffect(() => {
+        const svg = svgRef.current;
+        if (!svg) return;
+        const observer = new IntersectionObserver(([entry]) => {
+            setPaused(!entry.isIntersecting);
+            if (entry.isIntersecting) svg.unpauseAnimations();
+            else svg.pauseAnimations();
+        });
+        observer.observe(svg);
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <div className="relative aspect-square w-full">
-            <svg viewBox="0 0 600 600" className="absolute inset-0 size-full" aria-hidden>
+            <svg ref={svgRef} viewBox="0 0 600 600" className="absolute inset-0 size-full" aria-hidden>
                 <defs>
                     <clipPath id="retro-sun">
                         <circle cx="390" cy="190" r="140" />
@@ -84,6 +101,7 @@ export const RetroComputer: React.FC = () => {
                                 style={{
                                     transform: `translateY(${80 + 120 * progress}px) scaleY(${0.1 + 0.9 * progress})`,
                                     animationDelay: `${-progress * sunStripeDuration}s`,
+                                    animationPlayState: paused ? "paused" : undefined,
                                 }}
                             />
                         );
