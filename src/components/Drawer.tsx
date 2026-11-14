@@ -1,5 +1,5 @@
 import type React from "react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router";
 import { listMenu } from "../data/profile";
 import { gsap, motionOk, useGSAP } from "../lib/gsap";
@@ -12,7 +12,24 @@ interface DrawerProps {
 export const Drawer: React.FC<DrawerProps> = ({ active }) => {
     const { isOpen, setIsOpen } = useDrawer();
     const listRef = useRef<HTMLUListElement>(null);
+    const closeRef = useRef<HTMLButtonElement>(null);
     const close = () => setIsOpen(false);
+
+    useEffect(() => {
+        if (!isOpen) return;
+        const opener = document.activeElement as HTMLElement | null;
+        closeRef.current?.focus();
+
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") setIsOpen(false);
+        };
+        document.addEventListener("keydown", onKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", onKeyDown);
+            opener?.focus({ preventScroll: true });
+        };
+    }, [isOpen, setIsOpen]);
 
     useGSAP(() => {
         if (!isOpen) return;
@@ -35,6 +52,7 @@ export const Drawer: React.FC<DrawerProps> = ({ active }) => {
                 <div className="flex items-center justify-between border-b-[3px] border-ink p-4">
                     <span className="font-mono text-xl font-bold"><span className="text-accent-on-light">&gt;</span> SermarDev</span>
                     <button
+                        ref={closeRef}
                         type="button"
                         aria-label="Cerrar menú"
                         onClick={close}
