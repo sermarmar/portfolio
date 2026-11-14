@@ -10,7 +10,7 @@ const Arrow: React.FC = () => (
 const Item: React.FC = () => (
     <span className="flex items-center gap-[0.5em] pr-[0.5em]">
         <span className="-rotate-2 rounded-xl border-[3px] border-ink bg-paper px-[0.4em] py-[0.1em] font-mono font-bold shadow-brutal-sm">
-            <span className="text-terracotta-600">&gt;</span>{profile.handle}
+            <span className="text-accent-on-light">&gt;</span>{profile.handle}
         </span>
         <Arrow />
         <span>El <em className="font-serif">portfolio</em> de Sergio</span>

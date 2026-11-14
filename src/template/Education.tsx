@@ -6,13 +6,12 @@ import { education } from "../data/profile";
 export const Education: React.FC = () => {
     return (
         <Section id="education" tone="accent">
-            <SectionTitle kicker="// cat formacion.md" title="Formación" accent="académica" number="03" tone="accent" />
+            <SectionTitle kicker="cat formacion.md" title="Formación" accent="académica" number="03" tone="accent" />
 
             <div className="relative grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                <div aria-hidden className="absolute -top-12 left-[28%] size-40 rounded-full border-[3px] border-ink bg-ink max-md:hidden" />
                 <div aria-hidden className="absolute right-[26%] -bottom-10 size-32 rotate-12 rounded-3xl border-[3px] border-ink bg-paper max-md:hidden" />
                 {education.map((item) => (
-                    <article key={item.title} className="glass relative flex flex-col rounded-3xl bg-white/20 p-6 transition-transform duration-300 hover:-translate-y-1 md:p-8">
+                    <article key={item.title} className="glass relative flex flex-col rounded-3xl border-2 border-ink bg-white/20 p-6 md:p-8">
                         <div className="flex items-center justify-between gap-3">
                             <span className="rounded-full bg-ink px-3 py-1 font-mono text-xs text-paper md:text-sm">{item.years}</span>
                             <svg viewBox="0 0 24 24" className="size-7" fill="currentColor" aria-hidden>
@@ -25,9 +24,9 @@ export const Education: React.FC = () => {
                 ))}
                 <article className="relative flex flex-col justify-between gap-6 rounded-2xl border-[3px] border-ink bg-ink p-6 text-paper shadow-brutal md:p-8">
                     <p className="font-mono text-sm leading-relaxed md:text-base">
-                        <span className="text-terracotta-400">while</span> (true) {"{"}<br />
-                        <span className="pl-6">aprender();</span><br />
-                        {"}"}<span className="ml-1 animate-typing border-r-[0.6em] border-terracotta-500" />
+                        <span className="text-accent-on-dark">while</span> <span className="text-paper/70">(</span><span className="text-accent-on-dark">true</span><span className="text-paper/70">) {"{"}</span><br />
+                        <span className="pl-6 font-bold">aprender</span><span className="text-paper/70">();</span><br />
+                        <span className="text-paper/70">{"}"}</span><span className="ml-1 animate-typing border-r-[0.6em] border-terracotta-500" />
                     </p>
                     <p className="font-serif text-3xl italic md:text-4xl">Aprendizaje continuo</p>
                 </article>

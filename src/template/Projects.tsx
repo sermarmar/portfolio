@@ -8,13 +8,13 @@ import { projects } from "../data/profile";
 export const Projects: React.FC = () => {
     return (
         <Section id="projects" tone="paper">
-            <SectionTitle kicker="// ls ./proyectos" title="Proyectos" accent="destacados" number="05" tone="paper" />
+            <SectionTitle kicker="ls ./proyectos" title="Proyectos" accent="destacados" number="05" tone="paper" />
 
             <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,max(20rem,(100%_-_4rem)/3)),1fr))] gap-x-8 gap-y-16">
                 {projects.map((project, index) => (
                     <article key={project.slug}>
                         <Link to={`/proyectos/${project.slug}`} className="group flex h-full flex-col">
-                            <div className="transition-transform duration-300 group-hover:-translate-y-1">
+                            <div className="transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:-translate-y-1">
                                 <ProjectPreview project={project} />
                             </div>
 
@@ -28,7 +28,7 @@ export const Projects: React.FC = () => {
                             <p className="mt-4 leading-relaxed text-ink/80">{project.overview}</p>
 
                             <span className="mt-auto self-start pt-8">
-                                <span className="inline-block rounded-full border-[3px] border-ink bg-ink px-5 py-2 text-sm font-semibold text-paper shadow-brutal-accent transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5">
+                                <span className="inline-block rounded-full border-[3px] border-ink bg-ink px-5 py-2 text-sm font-semibold text-paper shadow-brutal-accent transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:-translate-x-0.5 group-focus-visible:-translate-y-0.5">
                                     Ver proyecto →
                                 </span>
                             </span>

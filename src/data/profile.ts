@@ -11,7 +11,7 @@ export const profile = {
     email: "sermarmar1995@gmail.com",
     github: "github.com/sermarmar",
     linkedin: "linkedin.com/in/sermarmar",
-    tags: ["Software Engineer", "Fullstack Developer", "React · Java"],
+    tags: ["Software Engineer", "Fullstack Developer", "React · Java", "IA · Claude"],
     offices: ["Software", "Web", "Frontend", "Backend", "Fullstack"],
 };
 

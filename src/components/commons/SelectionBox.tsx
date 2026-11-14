@@ -14,7 +14,7 @@ const handles = [
 
 const tones = {
     light: { frame: "text-terracotta-600", handle: "bg-paper" },
-    dark: { frame: "text-paper/50 group-hover:text-terracotta-500", handle: "bg-ink" },
+    dark: { frame: "text-paper/50 group-hover:text-terracotta-500 group-focus-visible:text-terracotta-500", handle: "bg-ink" },
 };
 
 interface SelectionBoxProps {
@@ -41,7 +41,7 @@ export const SelectionBox: React.FC<SelectionBoxProps> = ({ children, tone = "li
         <div ref={ref} className={`relative ${className}`}>
             {label && (
                 <span className="absolute -top-9 left-0 flex items-center gap-2 rounded-md border-2 border-ink bg-ink px-2 py-0.5 font-mono text-xs text-paper whitespace-nowrap">
-                    <span className="text-terracotta-400">{label}</span>
+                    <span className="text-accent-on-dark">{label}</span>
                     <span className="opacity-60">{size.width} × {size.height}</span>
                 </span>
             )}

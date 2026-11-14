@@ -24,7 +24,7 @@ export const Contents: React.FC = () => {
                         <li key={section.id}>
                             <a href={`#${section.id}`} className="group block">
                                 <SelectionBox tone="dark">
-                                    <span className="flex items-start gap-2 px-4 py-1 font-serif text-[clamp(2.2rem,4.6vw,4.2rem)] italic leading-tight transition-colors group-hover:text-terracotta-500">
+                                    <span className="flex items-start gap-2 px-4 py-1 font-serif text-[clamp(2.2rem,4.6vw,4.2rem)] italic leading-tight transition-colors group-hover:text-terracotta-500 group-focus-visible:text-terracotta-500">
                                         {section.label}
                                         <sup className="pt-3 font-mono text-sm not-italic opacity-60">{String(index + 1).padStart(2, "0")}</sup>
                                     </span>
@@ -38,11 +38,11 @@ export const Contents: React.FC = () => {
                     <div aria-hidden className="absolute -top-8 -left-8 size-40 rounded-full border-2 border-paper bg-terracotta-500" />
                     <div aria-hidden className="absolute -right-6 -bottom-6 size-28 rotate-12 rounded-2xl bg-terracotta-300" />
                     <Terminal title="explorer" tone="dark" className="relative">
-                        <p className="mb-2"><span className="text-terracotta-400">▾</span> portfolio/</p>
+                        <p className="mb-2"><span className="text-accent-on-dark">▾</span> portfolio/</p>
                         <ul className="space-y-1.5">
                             {sections.map((section, index) => (
                                 <li key={section.id}>
-                                    <a href={`#${section.id}`} className="flex gap-2 transition-colors hover:text-terracotta-400">
+                                    <a href={`#${section.id}`} className="flex gap-2 transition-colors hover:text-accent-on-dark">
                                         <span className="opacity-50">{index === sections.length - 1 ? "└──" : "├──"}</span>
                                         {String(index + 1).padStart(2, "0")}_{section.file}
                                     </a>

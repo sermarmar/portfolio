@@ -16,6 +16,13 @@
     --color-terracotta-900: #802c1f;
     --color-terracotta-950: #46130b;
 
+    --color-accent-on-light: var(--color-terracotta-700);
+    --color-accent-on-dark: var(--color-terracotta-400);
+    --color-on-accent-muted: var(--color-terracotta-950);
+
+    --color-crt-plastic: #9d957e;
+    --color-crt-label: #2b2924;
+
     --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
     --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -27,7 +34,6 @@
     --animate-typing: blink 1s step-end infinite;
     --animate-marquee: marquee 30s linear infinite;
     --animate-float: float 7s ease-in-out infinite;
-    --animate-jump: jump 1s ease infinite;
     --animate-sun-stripe: sun-stripe 6s linear infinite;
 
     @keyframes blink {
@@ -39,12 +45,6 @@
     @keyframes marquee {
         to {
             transform: translateX(-50%);
-        }
-    }
-
-    @keyframes jump {
-        80% {
-            transform: translateY(-5px);
         }
     }
 
@@ -128,6 +128,11 @@
 
     ::selection {
         @apply bg-terracotta-500 text-ink;
+    }
+
+    :focus-visible {
+        outline: 3px solid currentColor;
+        outline-offset: 3px;
     }
 }
 

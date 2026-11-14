@@ -14,7 +14,7 @@ export const ContactBar: React.FC = () => {
             {links.map(({ label, href }) => (
                 <li key={label} className="truncate last:text-right md:last:text-left">
                     {href ? (
-                        <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="hover:text-terracotta-500 transition-colors">
+                        <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="hover:text-accent-on-dark transition-colors">
                             {label}
                         </a>
                     ) : label}

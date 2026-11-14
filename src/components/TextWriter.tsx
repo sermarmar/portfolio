@@ -1,48 +1,32 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import type React from "react";
+import { useRef } from "react";
+import { gsap, motionOk, useGSAP } from "../lib/gsap";
 
-interface TextWriterProps { 
+interface TextWriterProps {
     texts: string[];
 }
 
 export const TextWriter: React.FC<TextWriterProps> = ({ texts }) => {
-    const [displayedText, setDisplayedText] = useState('');
-    const [index, setIndex] = useState(0);
+    const ref = useRef<HTMLSpanElement>(null);
 
-    useEffect(() => {
-        let cancelled = false;
-        const word = texts[index];
-        const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-        const animarTexto = async () => {
-            // Escribir palabra
-            for (let i = 1; i <= word.length; i++) {
-                if (cancelled) return;
-                setDisplayedText(word.slice(0, i));
-                await wait(200);
-            }
-
-            // Pausa después de escribir
-            await wait(2000);
-
-            // Borrar palabra
-            for (let i = word.length - 1; i >= 0; i--) {
-                if (cancelled) return;
-                setDisplayedText(word.slice(0, i));
-                await wait(100);
-            }
-
-            // Pasar a siguiente palabra
-            if (!cancelled) setIndex(prev => (prev + 1) % texts.length);
-        };
-
-        animarTexto();
-        return () => { cancelled = true; };
-    }, [index, texts]);
+    useGSAP(() => {
+        const mm = gsap.matchMedia();
+        mm.add(motionOk, () => {
+            const timeline = gsap.timeline({ repeat: -1, defaults: { ease: "none" } }).set(ref.current, { text: "" });
+            texts.forEach((word) => {
+                timeline
+                    .to(ref.current, { text: word, duration: word.length * 0.15 })
+                    .to(ref.current, { text: { value: "", rtl: true }, duration: word.length * 0.08 }, "+=2");
+            });
+        });
+    }, { scope: ref, dependencies: [texts] });
 
     return (
-        <span className="animate-typing border-r-4 border-terracotta-600 pr-1">
-            {displayedText}
-        </span>
+        <>
+            <span className="sr-only">{new Intl.ListFormat("es", { type: "conjunction" }).format(texts)}</span>
+            <span ref={ref} aria-hidden className="animate-typing border-r-4 border-accent-on-light pr-1">
+                {texts.at(-1)}
+            </span>
+        </>
     );
-}
+};

@@ -8,6 +8,18 @@ const digits: Record<Tone, string> = {
     accent: "bg-ink border-ink text-terracotta-500",
 };
 
+const prompts: Record<Tone, string> = {
+    ink: "text-accent-on-dark",
+    paper: "text-accent-on-light",
+    accent: "font-bold text-ink",
+};
+
+const commands: Record<Tone, string> = {
+    ink: "text-paper/70",
+    paper: "text-ink/70",
+    accent: "text-on-accent-muted",
+};
+
 interface SectionTitleProps {
     kicker: string;
     title: string;
@@ -20,7 +32,9 @@ interface SectionTitleProps {
 export const SectionTitle: React.FC<SectionTitleProps> = ({ kicker, title, accent, number, tone, as: Heading = "h2" }) => {
     return (
         <header className="relative z-10 mb-12 md:mb-20">
-            <p className="font-mono text-sm md:text-base opacity-70 mb-3">{kicker}</p>
+            <p className="font-mono text-sm md:text-base mb-3">
+                <span aria-hidden className={prompts[tone]}>$</span> <span className={commands[tone]}>{kicker}</span>
+            </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
                 <Heading className="text-[clamp(3rem,7vw,7rem)] leading-[0.9] font-semibold tracking-tighter">
                     {title} <span className="font-serif italic font-normal tracking-normal">{accent}</span>

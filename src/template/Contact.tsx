@@ -1,7 +1,9 @@
 import type React from "react";
+import { useRef } from "react";
 import { Terminal } from "../components/commons/Terminal";
 import { ContactBar } from "../components/ContactBar";
 import { profile } from "../data/profile";
+import { gsap, motionOk, useGSAP } from "../lib/gsap";
 
 const channels = [
     { command: "open mail", label: profile.email, href: `mailto:${profile.email}` },
@@ -10,6 +12,28 @@ const channels = [
 ];
 
 export const Contact: React.FC = () => {
+    const terminalRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const terminal = terminalRef.current;
+        if (!terminal) return;
+
+        const mm = gsap.matchMedia();
+        mm.add(motionOk, () => {
+            const timeline = gsap.timeline({ scrollTrigger: { trigger: terminal, start: "top 75%", once: true } });
+            gsap.utils.toArray<HTMLElement>("[data-channel]").forEach((channel) => {
+                timeline
+                    .from(channel.querySelector("[data-command]"), { text: "", duration: 0.45, ease: "none" })
+                    .from(channel.querySelector("[data-output]"), { opacity: 0, y: 6, duration: 0.3, ease: "expo.out", clearProps: "all" });
+            });
+
+            // Si se llega a los enlaces con el teclado antes de que el terminal acabe de escribir, se muestran ya.
+            const finish = () => timeline.progress(1);
+            terminal.addEventListener("focusin", finish);
+            return () => terminal.removeEventListener("focusin", finish);
+        });
+    }, { scope: terminalRef });
+
     return (
         <section id="contact" className="relative flex min-h-svh flex-col overflow-hidden bg-ink px-5 pt-28 pb-6 text-paper md:px-10 md:pt-32 lg:px-16">
             <div aria-hidden className="absolute -right-[20rem] bottom-[calc(25%-15rem)] size-[60rem] bg-radial-[closest-side] from-terracotta-500/26 via-terracotta-500/14 via-45% to-transparent" />
@@ -27,14 +51,14 @@ export const Contact: React.FC = () => {
                     </a>
                 </div>
 
-                <div className="relative mx-auto w-full max-w-md">
+                <div ref={terminalRef} className="relative mx-auto w-full max-w-md">
                     <div aria-hidden className="absolute -top-8 -right-6 size-36 rounded-full border-2 border-paper bg-terracotta-500" />
                     <Terminal title="contacto.sh" tone="dark" className="relative">
                         <ul className="space-y-3">
                             {channels.map((channel) => (
-                                <li key={channel.command}>
-                                    <p><span className="text-terracotta-400">❯</span> {channel.command}</p>
-                                    <a href={channel.href} target={channel.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="break-all opacity-70 transition hover:text-terracotta-400 hover:opacity-100">
+                                <li key={channel.command} data-channel>
+                                    <p aria-hidden><span className="text-accent-on-dark">❯</span> <span data-command>{channel.command}</span></p>
+                                    <a data-output href={channel.href} target={channel.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="inline-block break-all opacity-70 transition hover:text-accent-on-dark hover:opacity-100">
                                         → {channel.label}
                                     </a>
                                 </li>
@@ -50,7 +74,7 @@ export const Contact: React.FC = () => {
 
             <footer className="relative z-10 mt-12 flex flex-wrap justify-between gap-4 border-t-2 border-paper/20 pt-6 font-mono text-xs opacity-70 md:text-sm">
                 <span>© {profile.year} {profile.name} — hecho con React, TypeScript y Tailwind</span>
-                <a href="#home" className="hover:text-terracotta-400">Volver arriba ↑</a>
+                <a href="#home" className="hover:text-accent-on-dark">Volver arriba ↑</a>
             </footer>
         </section>
     );

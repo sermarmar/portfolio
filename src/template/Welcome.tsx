@@ -18,7 +18,7 @@ const FolderIcon: React.FC = () => (
 
 export const Welcome: React.FC = () => {
     return (
-        <Section id="intro" tone="paper">
+        <Section id="intro" tone="paper" file="README.md">
             <div className="grid flex-1 items-center gap-16 lg:grid-cols-[1.35fr_1fr]">
                 <div className="space-y-10 pt-6">
                     <SelectionBox label="h2.hola">
@@ -28,8 +28,8 @@ export const Welcome: React.FC = () => {
                         </h2>
                     </SelectionBox>
                     <p className="font-mono text-lg md:text-2xl">
-                        <span className="text-terracotta-700">$</span> Soy Desarrollador de{" "}
-                        <span className="font-bold text-terracotta-700"><TextWriter texts={profile.offices} /></span>
+                        <span className="text-accent-on-light">$</span> Soy Desarrollador de{" "}
+                        <span className="font-bold text-accent-on-light"><TextWriter texts={profile.offices} /></span>
                     </p>
                 </div>
 

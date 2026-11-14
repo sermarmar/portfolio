@@ -11,7 +11,7 @@ export const BeforeAfter: React.FC<BeforeAfterProps> = ({ before, after, label }
     const [position, setPosition] = useState(50);
 
     return (
-        <div className="relative select-none overflow-hidden rounded-2xl border-[3px] border-ink bg-paper shadow-brutal">
+        <div className="relative select-none overflow-hidden rounded-2xl border-[3px] border-ink bg-paper shadow-brutal has-[input:focus-visible]:outline-3 has-[input:focus-visible]:outline-offset-4 has-[input:focus-visible]:outline-ink">
             <img src={before} alt={`${label} antes del rediseño`} loading="lazy" draggable={false} className="block w-full" />
             <img
                 src={after}

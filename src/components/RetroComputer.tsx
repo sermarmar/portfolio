@@ -1,9 +1,9 @@
 import type React from "react";
 import retroPc from "../assets/retro-pc.webp";
 
-const ink = "#121212";
-const paper = "#f4f1ea";
-const terracotta = { 300: "#fbafa0", 500: "#f35e40", 700: "#bc3520" };
+const ink = "var(--color-ink)";
+const paper = "var(--color-paper)";
+const terracotta = { 300: "var(--color-terracotta-300)", 500: "var(--color-terracotta-500)", 700: "var(--color-terracotta-700)" };
 
 const photoFilter = [
     "grayscale(1)",
@@ -51,15 +51,15 @@ export const RetroComputer: React.FC = () => {
                         <stop offset="1" stopColor={terracotta[700]} />
                     </linearGradient>
                     <linearGradient id="retro-fade-x" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
-                        <stop offset="0" stopColor="#fff" stopOpacity="0" />
-                        <stop offset="0.12" stopColor="#fff" />
-                        <stop offset="0.88" stopColor="#fff" />
-                        <stop offset="1" stopColor="#fff" stopOpacity="0" />
+                        <stop offset="0" stopColor="white" stopOpacity="0" />
+                        <stop offset="0.12" stopColor="white" />
+                        <stop offset="0.88" stopColor="white" />
+                        <stop offset="1" stopColor="white" stopOpacity="0" />
                     </linearGradient>
                     <linearGradient id="retro-fade-y" x1="0" y1={horizon} x2="0" y2="600" gradientUnits="userSpaceOnUse">
-                        <stop offset="0" stopColor="#fff" />
-                        <stop offset="0.75" stopColor="#fff" />
-                        <stop offset="1" stopColor="#fff" stopOpacity="0" />
+                        <stop offset="0" stopColor="white" />
+                        <stop offset="0.75" stopColor="white" />
+                        <stop offset="1" stopColor="white" stopOpacity="0" />
                     </linearGradient>
                     <mask id="retro-mask-x" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="600">
                         <rect width="600" height="600" fill="url(#retro-fade-x)" />
@@ -131,7 +131,7 @@ export const RetroComputer: React.FC = () => {
             <div className="@container absolute bottom-[5%] left-[6%] aspect-[707/554] w-[88%]">
                 <div className="absolute inset-0" style={{ filter: photoFilter }}>
                     <img src={retroPc} alt="Ordenador retro de los 80 con la marca SERMAR.DEV" className="size-full -scale-x-100" />
-                    <span className="absolute top-[72.9%] left-[70.6%] flex h-[3.4%] w-[8.2%] skew-y-[9.5deg] items-center justify-center rounded-sm bg-[#9d957e] text-[1.25cqw] leading-none font-bold tracking-tight whitespace-nowrap text-[#2b2924] shadow-[0_0_3px_2px_#9d957e]">
+                    <span className="absolute top-[72.9%] left-[70.6%] flex h-[3.4%] w-[8.2%] skew-y-[9.5deg] items-center justify-center rounded-sm bg-crt-plastic text-[1.25cqw] leading-none font-bold tracking-tight whitespace-nowrap text-crt-label shadow-[0_0_3px_2px_var(--color-crt-plastic)]">
                         SERMAR.DEV
                     </span>
                 </div>

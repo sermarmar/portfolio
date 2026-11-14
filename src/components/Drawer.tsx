@@ -1,11 +1,26 @@
 import type React from "react";
+import { useRef } from "react";
 import { Link } from "react-router";
-import { useDrawer } from "../providers/drawer/useDrawer";
 import { listMenu } from "../data/profile";
+import { gsap, motionOk, useGSAP } from "../lib/gsap";
+import { useDrawer } from "../providers/drawer/useDrawer";
 
-export const Drawer: React.FC = () => {
+interface DrawerProps {
+    active: string | null;
+}
+
+export const Drawer: React.FC<DrawerProps> = ({ active }) => {
     const { isOpen, setIsOpen } = useDrawer();
+    const listRef = useRef<HTMLUListElement>(null);
     const close = () => setIsOpen(false);
+
+    useGSAP(() => {
+        if (!isOpen) return;
+        const mm = gsap.matchMedia();
+        mm.add(motionOk, () => {
+            gsap.from("li", { x: -32, opacity: 0, duration: 0.5, stagger: 0.05, delay: 0.12, ease: "expo.out" });
+        });
+    }, { scope: listRef, dependencies: [isOpen], revertOnUpdate: true });
 
     return (
         <div className="lg:hidden">
@@ -18,7 +33,7 @@ export const Drawer: React.FC = () => {
                 className={`fixed top-0 left-0 z-50 flex h-full w-80 max-w-[85vw] flex-col border-r-[3px] border-ink bg-paper transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0 shadow-brutal" : "-translate-x-full"}`}
             >
                 <div className="flex items-center justify-between border-b-[3px] border-ink p-4">
-                    <span className="font-mono text-xl font-bold"><span className="text-terracotta-600">&gt;</span> SermarDev</span>
+                    <span className="font-mono text-xl font-bold"><span className="text-accent-on-light">&gt;</span> SermarDev</span>
                     <button
                         type="button"
                         aria-label="Cerrar menú"
@@ -30,12 +45,17 @@ export const Drawer: React.FC = () => {
                         </svg>
                     </button>
                 </div>
-                <ul className="flex flex-1 flex-col justify-center gap-6 px-8">
+                <ul ref={listRef} className="flex flex-1 flex-col justify-center gap-6 px-8">
                     {listMenu.map((item, index) => (
                         <li key={item.id}>
-                            <Link to={`/#${item.id}`} onClick={close} className="group flex items-baseline gap-3">
-                                <span className="font-mono text-sm text-terracotta-700">{String(index).padStart(2, "0")}</span>
-                                <span className="font-serif text-4xl italic transition-colors group-hover:text-terracotta-600">{item.label}</span>
+                            <Link
+                                to={`/#${item.id}`}
+                                onClick={close}
+                                aria-current={active === item.id ? "location" : undefined}
+                                className="group flex items-baseline gap-3"
+                            >
+                                <span className="font-mono text-sm text-accent-on-light group-aria-[current=location]:font-bold">{String(index).padStart(2, "0")}</span>
+                                <span className="font-serif text-4xl italic decoration-[3px] underline-offset-8 transition-colors group-hover:text-accent-on-light group-aria-[current=location]:underline">{item.label}</span>
                             </Link>
                         </li>
                     ))}

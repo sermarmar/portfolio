@@ -21,12 +21,12 @@ export const ProjectDetail: React.FC = () => {
     return (
         <main>
             <title>{`${project.title} ${project.accent} — ${profile.name}`}</title>
-            <Section id="project" tone="paper">
-                <Link to="/#projects" className="relative z-10 mb-8 self-start font-mono text-sm transition-colors hover:text-terracotta-600 md:text-base">
+            <Section id="project" tone="paper" file={`proyectos/${project.slug}/`}>
+                <Link to="/#projects" className="relative z-10 mb-8 self-start font-mono text-sm transition-colors hover:text-accent-on-light md:text-base">
                     ← cd ../proyectos
                 </Link>
 
-                <SectionTitle as="h1" kicker={`// cat ./proyectos/${project.slug}`} title={project.title} accent={project.accent} number={String(index + 1).padStart(2, "0")} tone="paper" />
+                <SectionTitle as="h1" kicker={`cd ./proyectos/${project.slug}`} title={project.title} accent={project.accent} number={String(index + 1).padStart(2, "0")} tone="paper" />
 
                 <div className="mb-10 flex flex-wrap items-end justify-between gap-x-10 gap-y-8">
                     <dl className="grid grid-cols-3 gap-x-6 gap-y-1 text-sm md:gap-x-10 md:text-base">
@@ -81,7 +81,7 @@ export const ProjectDetail: React.FC = () => {
                     <ul className="grid gap-5 sm:grid-cols-2">
                         {project.features.map((feature, featureIndex) => (
                             <li key={feature} className="rounded-2xl border-[3px] border-ink bg-white/50 p-5 shadow-brutal-sm">
-                                <span className="font-mono text-sm text-terracotta-700">{String(featureIndex + 1).padStart(2, "0")}</span>
+                                <span className="font-mono text-sm text-accent-on-light">{String(featureIndex + 1).padStart(2, "0")}</span>
                                 <p className="mt-2 leading-relaxed">{feature}</p>
                             </li>
                         ))}
@@ -98,7 +98,7 @@ export const ProjectDetail: React.FC = () => {
                                 <img key={image.src} src={image.src} alt={image.alt} loading="lazy" className="w-full rounded-2xl border-[3px] border-ink shadow-brutal" />
                             ))
                             : [1, 2].map((n) => (
-                                <div key={n} className="grid aspect-[16/10] place-items-center rounded-2xl border-[3px] border-dashed border-ink/40 font-mono text-sm text-ink/50">
+                                <div key={n} className="grid aspect-[16/10] place-items-center rounded-2xl border-[3px] border-dashed border-ink/40 font-mono text-sm text-ink/60">
                                     {`// captura_0${n}.png — pendiente`}
                                 </div>
                             ))}
@@ -108,13 +108,13 @@ export const ProjectDetail: React.FC = () => {
                 <nav aria-label="Otros proyectos" className="mt-24 grid gap-6 border-t-[3px] border-ink pt-10 md:grid-cols-2">
                     <Link to={`/proyectos/${previous.slug}`} className="group">
                         <span className="font-mono text-sm opacity-70">← Anterior</span>
-                        <p className="mt-2 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-none tracking-tighter transition-colors group-hover:text-terracotta-600">
+                        <p className="mt-2 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-none tracking-tighter transition-colors group-hover:text-accent-on-light group-focus-visible:text-accent-on-light">
                             {previous.title} <span className="font-serif font-normal italic tracking-normal">{previous.accent}</span>
                         </p>
                     </Link>
                     <Link to={`/proyectos/${next.slug}`} className="group md:text-right">
                         <span className="font-mono text-sm opacity-70">Siguiente →</span>
-                        <p className="mt-2 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-none tracking-tighter transition-colors group-hover:text-terracotta-600">
+                        <p className="mt-2 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-none tracking-tighter transition-colors group-hover:text-accent-on-light group-focus-visible:text-accent-on-light">
                             {next.title} <span className="font-serif font-normal italic tracking-normal">{next.accent}</span>
                         </p>
                     </Link>
