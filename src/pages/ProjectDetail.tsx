@@ -32,7 +32,7 @@ export const ProjectDetail: React.FC = () => {
                     <dl className="grid grid-cols-3 gap-x-6 gap-y-1 text-sm md:gap-x-10 md:text-base">
                         {[["Stack", project.stack], ["Año", project.year], ["Rol", project.role]].map(([term, value]) => (
                             <div key={term} className="flex flex-col md:flex-row md:items-baseline">
-                                <dt className="opacity-70">{term}\</dt>
+                                <dt className="opacity-70">{term}</dt>
                                 <dd className="font-serif text-lg italic md:text-xl">{value}</dd>
                             </div>
                         ))}
