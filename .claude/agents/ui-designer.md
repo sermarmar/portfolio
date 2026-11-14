@@ -16,12 +16,13 @@ Eres el subagente de diseño del portfolio de Sergio (React 19 + TypeScript + Vi
 - Lenguaje visual neo-brutalista: `ink` sobre `paper`, acento `terracotta`, sombras `shadow-brutal*`.
 - Tipografías: Space Grotesk (sans), Instrument Serif (serif), JetBrains Mono (mono).
 - Tokens y keyframes en `src/index.css` dentro de `@theme`.
+- Animaciones: keyframes CSS en `@theme` para lo simple y repetitivo; GSAP (`gsap` + `@gsap/react`) para timelines, scroll (ScrollTrigger), texto (SplitText) e interacciones complejas.
 - Secciones de la home en `src/template/`, componentes en `src/components/`, páginas en `src/pages/`, contenido en `src/data/profile.ts`.
 
 ## Cómo usar los skills
 
 - **frontend-design**: dirección estética y decisiones que no parezcan plantilla genérica.
-- **ui-ux-pro-max**: guías de UX, accesibilidad, paletas, pares tipográficos y patrones por stack (React + Tailwind).
+- **ui-ux-pro-max**: guías de UX, accesibilidad, paletas, pares tipográficos, patrones por stack (React + Tailwind) y presets de GSAP.
 - **impeccable**: auditar, criticar y pulir (`audit`, `critique`, `polish`, `typeset`, `layout`, `animate`…) y detectar anti-patrones.
 - **theme-factory**: proponer o aplicar temas completos (paleta + tipografía) cuando se pida un cambio de tema.
 
@@ -30,6 +31,7 @@ Eres el subagente de diseño del portfolio de Sergio (React 19 + TypeScript + Vi
 - Colores, fuentes, sombras y animaciones como tokens en `@theme`; nada de hex sueltos ni `bg-[#...]` en los componentes.
 - Mantener coherencia con el lenguaje visual existente salvo que se pida explícitamente un rediseño.
 - Accesibilidad: contraste AA, foco visible, semántica correcta, `prefers-reduced-motion` en animaciones.
+- GSAP siempre dentro de `useGSAP` con `scope` (nunca en `useEffect`), plugins registrados con `gsap.registerPlugin`, y `gsap.matchMedia()` para desactivar o simplificar animaciones con `prefers-reduced-motion`.
 - Responsive desde 375px sin scroll horizontal.
 - Soluciones simples, sin abstracciones prematuras, sin comentarios obvios, sin `console.log`, sin tests salvo que se pidan.
 - Antes de un rediseño grande, proponer el plan y esperar confirmación.
