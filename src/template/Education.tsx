@@ -1,15 +1,49 @@
 import type React from "react";
+import { useRef } from "react";
 import { Section } from "../components/commons/Section";
 import { SectionTitle } from "../components/commons/SectionTitle";
 import { education } from "../data/profile";
+import { gsap, motionOk, ScrollTrigger, useGSAP } from "../lib/gsap";
 
 export const Education: React.FC = () => {
+    const gridRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const cards = gsap.utils.toArray<HTMLElement>("article", gridRef.current);
+        const mm = gsap.matchMedia();
+
+        mm.add({ motion: motionOk, reduce: "(prefers-reduced-motion: reduce)" }, ({ conditions }) => {
+            if (!conditions?.motion) {
+                gsap.set(cards, { autoAlpha: 0 });
+                ScrollTrigger.batch(cards, { start: "top 88%", once: true, onEnter: (batch) => gsap.to(batch, { autoAlpha: 1, duration: 0.6, stagger: 0.1 }) });
+                return;
+            }
+
+            gsap.set(cards, { autoAlpha: 0, y: 110, scale: 0.9, rotation: (index: number) => (index % 2 ? 7 : -7) });
+            ScrollTrigger.batch(cards, {
+                start: "top 88%",
+                once: true,
+                onEnter: (batch) => gsap.timeline()
+                    .to(batch, { autoAlpha: 1, duration: 0.35, stagger: 0.12, ease: "power1.out" })
+                    .to(batch, { y: 0, scale: 1, rotation: 0, duration: 0.9, stagger: 0.12, ease: "back.out(1.6)", clearProps: "transform" }, 0),
+            });
+
+            gsap.from("[data-deco]", {
+                scale: 0,
+                rotation: -120,
+                duration: 0.8,
+                ease: "back.out(2)",
+                scrollTrigger: { trigger: gridRef.current, start: "top 75%", once: true },
+            });
+        });
+    }, { scope: gridRef });
+
     return (
         <Section id="education" tone="accent">
-            <SectionTitle kicker="cat formacion.md" title="Formación" accent="académica" number="03" tone="accent" />
+            <SectionTitle kicker="cat formacion.md" title="Formación" accent="académica" number="03" tone="accent" reveal />
 
-            <div className="relative grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                <div aria-hidden className="absolute right-[26%] -bottom-10 size-32 rotate-12 rounded-3xl border-[3px] border-ink bg-paper max-md:hidden" />
+            <div ref={gridRef} className="relative grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                <div aria-hidden data-deco className="absolute right-[26%] -bottom-10 size-32 rotate-12 rounded-3xl border-[3px] border-ink bg-paper max-md:hidden" />
                 {education.map((item) => (
                     <article key={item.title} className="glass relative flex flex-col rounded-3xl border-2 border-ink bg-white/20 p-6 md:p-8">
                         <div className="flex items-center justify-between gap-3">
